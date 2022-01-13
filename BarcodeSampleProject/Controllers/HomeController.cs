@@ -28,6 +28,27 @@ namespace BarcodeSampleProject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult GetProductDetails(string scannedBarCode)
+        {
+            var scannedProduct = _dbContext.Product.FirstOrDefault(x => x.Barcode_value == scannedBarCode);
+
+            if (scannedProduct != null)
+            {
+                return Json(scannedProduct);
+            }
+            else
+            {
+                return Json("error");
+            }
+
+        }
+
+        public IActionResult DisplayProductDetails(string id)
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -39,15 +39,27 @@
             cursor: pointer;
         }
 
-        .result-text {
-            padding: 2vh;
-        }
+
 
         .scanner {
             margin: auto;
             max-width: 1280px;
             max-height: 75vh;
         }
+
+        .title {
+            font-size: 1.4rem;
+            font-weight:bold;
+            text-align:right;
+        }
+
+        .data {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        
     </style>
 }
 
@@ -59,13 +71,44 @@
     <div id="description" class="description">Start the scanner and then aim at a barcode to get the encoded data.</div>
     <div id="lib-loading"><br />Library is loading, please wait...</div>
     <button id="barcode-picker-starter-button" hidden onclick="startBarcodePicker()">Start Scanning</button>
-    <div id="barcode-result" class="result-text">&nbsp;</div>
+    @* <div id="barcode-result" class="result-text">&nbsp;</div>*@
+
+</div>
+
+<div id="productDetails" hidden>
+
+    <div class="row">
+        <div class="col-5">
+            <p class="title">Product Name :</p>
+        </div>
+        <div class="col-7">
+            <p class="data" id="productName"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5">
+            <p class="title">Price :</p>
+        </div>
+        <div class="col-7">
+            <p class="data" id="productPrice"></h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5">
+            <p class="title">Barcode :</p>
+        </div>
+        <div class="col-7">
+            <p id="barcode-result" class="data"></p>
+        </div>
+    </div>
 </div>
 
 
 <scandit-barcode-picker id="barcode-picker"
                         class="scanner"
-                        configure.licenseKey ="AeIxFWCNQcWbButwsT9KhQMfM4mXN4cJ1h2GOvFFK3bxRCdrbUmp61RuFRaGW691yWR6Y4tsqN3EV/yk/Ch/ymlITFTOR0HATjmQeiBRnX3IdC4uTmlZs6BJ6TevUdkkSRdJQiUK9bY0E8Q8QDKAjXo7by8I9XufR638nbAvvk6AKQQhHNngGxRLDV+LVMTu08fWXRAKIwmqdR18t+9cRcw9Oo6oYTgd1EuL1+buxVb5FvpVJhTDGVUycdCJWypb+6Xs1e8wealS5wov3wysVv1tgFpwm3Bv5Aqm0z2sSgjZgzPm+Y3uh+TbGQi4L8Fqjii8eWlub3ZOseI5UueTPAFZlCxdfiv873r//6mvWwIkK4sK/17YDt362P9w3KZ6NSC6SA6rrhI0+Iw5boCpg0KCAjMD9m67oLZKTdbJ6dvQRxUq+xSXsyazT/3aOs+YkqMH7gcilqWDy8vkqXE8YnmAUdojUdPcLU5rhZjnh41oi0rjLLj9x1vTj1twWAOFRFvnzaNT5n84Sznvxr+EB6IU+RkXt+mX0FstP6K0KpNhPXHRdH/xATCx6+V2IoHwU1SDta/eAgYlyMyfvTMhLmr1wUTuwkQZ4VOkFqquQ+Ne3xjkwlY76EtQ5WtfgWz1TLDe3b7SgTdor3iCEdQ53VaCUuXzk90DuwwUl8FjzrbSrjGmE6u2fCsDhxNN0uPHpRz1i/bk9rONRVYTnOQzsfCHZ70nqLGw81ebAzjfieGnnhencDjU4wYy64b4V1BE85+qcpq4qhdKvhypEsmRKOopQtJwm9ULggrqTVQqr2IBapr5ZxL5wM7NWCEOqQ4="
+                        configure.licenseKey="AeIxFWCNQcWbButwsT9KhQMfM4mXN4cJ1h2GOvFFK3bxRCdrbUmp61RuFRaGW691yWR6Y4tsqN3EV/yk/Ch/ymlITFTOR0HATjmQeiBRnX3IdC4uTmlZs6BJ6TevUdkkSRdJQiUK9bY0E8Q8QDKAjXo7by8I9XufR638nbAvvk6AKQQhHNngGxRLDV+LVMTu08fWXRAKIwmqdR18t+9cRcw9Oo6oYTgd1EuL1+buxVb5FvpVJhTDGVUycdCJWypb+6Xs1e8wealS5wov3wysVv1tgFpwm3Bv5Aqm0z2sSgjZgzPm+Y3uh+TbGQi4L8Fqjii8eWlub3ZOseI5UueTPAFZlCxdfiv873r//6mvWwIkK4sK/17YDt362P9w3KZ6NSC6SA6rrhI0+Iw5boCpg0KCAjMD9m67oLZKTdbJ6dvQRxUq+xSXsyazT/3aOs+YkqMH7gcilqWDy8vkqXE8YnmAUdojUdPcLU5rhZjnh41oi0rjLLj9x1vTj1twWAOFRFvnzaNT5n84Sznvxr+EB6IU+RkXt+mX0FstP6K0KpNhPXHRdH/xATCx6+V2IoHwU1SDta/eAgYlyMyfvTMhLmr1wUTuwkQZ4VOkFqquQ+Ne3xjkwlY76EtQ5WtfgWz1TLDe3b7SgTdor3iCEdQ53VaCUuXzk90DuwwUl8FjzrbSrjGmE6u2fCsDhxNN0uPHpRz1i/bk9rONRVYTnOQzsfCHZ70nqLGw81ebAzjfieGnnhencDjU4wYy64b4V1BE85+qcpq4qhdKvhypEsmRKOopQtJwm9ULggrqTVQqr2IBapr5ZxL5wM7NWCEOqQ4="
                         configure.engineLocation="https://cdn.jsdelivr.net/npm/scandit-sdk@5.x/build/"
                         accessCamera="false"
                         visible="false"
@@ -75,13 +118,40 @@
 </scandit-barcode-picker>
 
 <script>
+    var scannedBarCode;
     const barcodePickerElement = document.getElementById("barcode-picker");
 
     barcodePickerElement.addEventListener("scan", (scanResult) => {
         const barcode = scanResult.detail.barcodes[0];
         const symbology = ScanditSDK.Barcode.Symbology.toHumanizedName(barcode.symbology);
 
-        document.getElementById("barcode-result").innerText = `${barcode.symbology} ${barcode.data}`;
+@*        document.getElementById("barcode-result").innerText = `${barcode.symbology} ${barcode.data}`;*@
+        document.getElementById("barcode-result").innerText = `${barcode.data}`;
+
+        scannedBarCode = barcode.data;
+
+        if (scannedBarCode != null) {
+            console.log("Barcode triggered");
+            $.ajax({
+                url: '/home/GetProductDetails',
+                type: 'POST',
+                dataType: "html",
+                data: { scannedBarCode: scannedBarCode },
+                success: function (data) {
+                    console.log(data);
+                    var datas = JSON.parse(data);
+                    document.getElementById("productDetails").hidden = false;
+                    document.getElementById("productName").innerText = datas.name;
+                    document.getElementById("productPrice").innerText = datas.price;
+                },
+                error: function () {
+                    alert("error");
+                },
+                async: false
+            });
+        }
+
+
     });
 
     barcodePickerElement.addEventListener("ready", () => {
