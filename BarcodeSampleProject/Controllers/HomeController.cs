@@ -1,4 +1,5 @@
-﻿using BarcodeSampleProject.Models;
+﻿using BarcodeSampleProject.Data;
+using BarcodeSampleProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,18 @@ namespace BarcodeSampleProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            IEnumerable<ProductViewModel> productList = _dbContext.Product;
+
             return View();
         }
 
